@@ -14,6 +14,7 @@
   <target name="init">
     <property file="config/project.properties"/>
     <mkdir dir="${project.build}"/>
+    <mkdir dir="${project.art}"/>
   </target>
 
   <target name="compile" depends="init" >
@@ -63,6 +64,7 @@
     <property file="config/project.properties"/>
     <delete dir="${project.build}"/>
     <delete dir="${project.dist}"/>
+    <delete dir="${project.art}"/>
   </target>
 </project>
 
