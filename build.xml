@@ -22,12 +22,11 @@
            <pathelement path="${project.lib}/commons-collections-3.2.1.jar"/>
       </classpath>
     </javac>
-<!--    <javac srcdir="${project.test}" destdir="${project.build}">
-       <classpath refid="project.classpath"/>
-    </javac> -->
     <javac includeantruntime="false" srcdir="${project.test}" destdir="${project.build}">
-		<classpath refid="project.classpath"/>
-   </javac>
+		<classpath>
+			<pathelement path="${project.lib}/junit-4.11.jar"/>
+		</classpath>
+    </javac>
   </target>
 
   <target name="dist" depends="test" >
