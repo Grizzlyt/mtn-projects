@@ -32,9 +32,18 @@
   <target name="dist" depends="test" >
     <mkdir dir="${project.dist}/lib"/>
     <jar jarfile="${project.dist}/lib/testProject-${TODAY_MY}.jar" basedir="${project.build}"/>
-       <copy file="./build.xml" tofile="${project.dist}/lib/build-${TODAY_MY}.xml" overwrite="true"/>
+<!--       <copy file="./build.xml" tofile="${project.dist}/lib/build-${TODAY_MY}.xml" overwrite="true"/>
        <copy file="${project.lib}/commons-collections-3.2.1.jar" tofile="${project.dist}/lib/commons-collections-3.2.1-${TODAY_MY}.jar" overwrite="true"/>
-       <copy file="./config/project.properties" tofile="${project.dist}/lib/project.properties" overwrite="true"/>
+       <copy file="./config/project.properties" tofile="${project.dist}/lib/project.properties" overwrite="true"/> -->
+	<tar destfile="${project.art}/ANT-Project_${TODAY_MY}.tar.gz" compression="gzip">
+	  <tarfileset dir="${project.dist}/lib">
+    	<include name="testProject-${TODAY_MY}.jar"/>
+	  </tarfileset>
+	  <tarfileset dir=".">
+    	<include name="config/project.properties"/>
+    	<include name="lib/commons-collections-3.2.1.jar"/>
+	  </tarfileset>
+	</tar>
   </target>
 
   <target name="test" depends="compile">
