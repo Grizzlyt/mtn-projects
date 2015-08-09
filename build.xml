@@ -7,7 +7,7 @@
   <property name="test"   location="test"/>
 
   <tstamp>
-      <format property="TODAY_MY" pattern="yyyymmdd-hhiiss"/>
+      <format property="TODAY_MY" pattern="yyyymmdd-hhmmss"/>
   </tstamp>
 
   <target name="init">
