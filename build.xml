@@ -20,10 +20,10 @@
 
   <target name="compile" depends="init" >
     <javac includeantruntime="false" srcdir="${project.src}" destdir="${project.build}">
-	      <classpath refid="projcet.classpath"/>
+	      <classpath refid="project.classpath"/>
     </javac>
     <javac includeantruntime="false" srcdir="${project.test}" destdir="${project.build}">
-	      <classpath refid="projcet.classpath"/>
+	      <classpath refid="project.classpath"/>
     </javac>
   </target>
 
