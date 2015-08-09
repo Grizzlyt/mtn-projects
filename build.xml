@@ -17,6 +17,7 @@
       </classpath>
     </javac>
     <javac srcdir="${test}" destdir="${build}">
+    </javac>
   </target>
 
   <target name="dist" depends="compile" >
