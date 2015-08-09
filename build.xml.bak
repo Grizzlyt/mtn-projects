@@ -1,0 +1,70 @@
+<project name="TestProject" default="dist" basedir="./module3/ant-task/">
+
+
+      <path id="project.classpath">
+	   <pathelement location="${project.build}"/>
+           <pathelement path="${project.lib}/junit-4.11.jar"/>
+           <pathelement path="${project.lib}/hamcrest-core-1.3.jar"/>
+    </path>
+
+  <tstamp>
+      <format property="TODAY_MY" pattern="yyyymmdd-hhmmss"/>
+  </tstamp>
+
+  <target name="init">
+    <property file="config/project.properties"/>
+    <mkdir dir="${project.build}"/>
+    <mkdir dir="${project.art}"/>
+  </target>
+
+  <target name="compile" depends="init" >
+    <javac includeantruntime="false" srcdir="${project.src}" destdir="${project.build}">
+      <classpath>
+           <pathelement path="${project.lib}/commons-collections-3.2.1.jar"/>
+      </classpath>
+    </javac>
+    <javac includeantruntime="false" srcdir="${project.test}" destdir="${project.build}">
+		<classpath>
+			<pathelement path="${project.lib}/junit-4.11.jar"/>
+		</classpath>
+    </javac>
+  </target>
+
+  <target name="dist" depends="test" >
+    <mkdir dir="${project.dist}/lib"/>
+    <jar jarfile="${project.dist}/lib/testProject-${TODAY_MY}.jar" basedir="${project.build}"/>
+<!--       <copy file="./build.xml" tofile="${project.dist}/lib/build-${TODAY_MY}.xml" overwrite="true"/>
+       <copy file="${project.lib}/commons-collections-3.2.1.jar" tofile="${project.dist}/lib/commons-collections-3.2.1-${TODAY_MY}.jar" overwrite="true"/>
+       <copy file="./config/project.properties" tofile="${project.dist}/lib/project.properties" overwrite="true"/> -->
+	<tar destfile="${project.art}/ANT-Project_${TODAY_MY}.tar.gz" compression="gzip">
+	  <tarfileset dir="${project.dist}/lib">
+    	<include name="testProject-${TODAY_MY}.jar"/>
+	  </tarfileset>
+	  <tarfileset dir=".">
+    	<include name="config/project.properties"/>
+    	<include name="lib/commons-collections-3.2.1.jar"/>
+	  </tarfileset>
+	</tar>
+  </target>
+
+  <target name="test" depends="compile">
+	<junit printsummary="yes">
+	  <classpath>
+        <pathelement location="${project.build}"/>
+           <pathelement path="${project.lib}/junit-4.11.jar"/>
+           <pathelement path="${project.lib}/hamcrest-core-1.3.jar"/>
+	  </classpath>
+  	  <test name="com.test.UnitTest" outfile="${project.build}/result">
+	  <formatter type="xml"/>
+	  </test>
+	</junit>
+  </target>
+
+  <target name="clean">
+    <property file="config/project.properties"/>
+    <delete dir="${project.build}"/>
+    <delete dir="${project.dist}"/>
+    <delete dir="${project.art}"/>
+  </target>
+</project>
+
