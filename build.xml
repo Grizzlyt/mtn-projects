@@ -1,16 +1,11 @@
 <project name="TestProject" default="dist" basedir="./module3/ant-task/">
 
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="dist"  location="dist"/>
-  <property name="lib"   location="lib"/>
-  <property name="test"   location="test"/>
-
   <tstamp>
       <format property="TODAY_MY" pattern="yyyymmdd-hhmmss"/>
   </tstamp>
 
   <target name="init">
+    <propertyfile file="conf/project.properties"/>
     <mkdir dir="${build}"/>
   </target>
 
