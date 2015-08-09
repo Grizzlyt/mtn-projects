@@ -6,27 +6,27 @@
 
   <target name="init">
     <propertyfile file="config/project.properties"/>
-    <mkdir dir="${build}"/>
+    <mkdir dir="${project.build}"/>
   </target>
 
   <target name="compile" depends="init" >
-    <javac srcdir="${src}" destdir="${build}">
+    <javac srcdir="${project.src}" destdir="${project.build}">
       <classpath>
-           <pathelement path="${lib}/commons-collections-3.2.1.jar"/>
+           <pathelement path="${project.lib}/commons-collections-3.2.1.jar"/>
       </classpath>
     </javac>
-    <javac srcdir="${test}" destdir="${build}">
+    <javac srcdir="${project.test}" destdir="${project.build}">
       <classpath>
-           <pathelement path="${lib}/junit-4.11.jar"/>
+           <pathelement path="${project.lib}/junit-4.11.jar"/>
       </classpath>
     </javac>
   </target>
 
   <target name="dist" depends="compile" >
-    <mkdir dir="${dist}/lib"/>
-    <jar jarfile="${dist}/lib/testProject-${TODAY_MY}.jar" basedir="${build}"/>
-       <copy file="./build.xml" tofile="${dist}/lib/build-${TODAY_MY}.xml" overwrite="true"/>
-       <copy file="${lib}/commons-collections-3.2.1.jar" tofile="${dist}/lib/commons-collections-3.2.1-${TODAY_MY}.jar" overwrite="true"/>
+    <mkdir dir="${project.dist}/lib"/>
+    <jar jarfile="${project.dist}/lib/testProject-${TODAY_MY}.jar" basedir="${project.build}"/>
+       <copy file="./build.xml" tofile="${project.dist}/lib/build-${TODAY_MY}.xml" overwrite="true"/>
+       <copy file="${project.lib}/commons-collections-3.2.1.jar" tofile="${project.dist}/lib/commons-collections-3.2.1-${TODAY_MY}.jar" overwrite="true"/>
   </target>
 
   <target name="test">
@@ -34,8 +34,8 @@
   </target>
 
   <target name="clean">
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
+    <delete dir="${project.build}"/>
+    <delete dir="${project.dist}"/>
   </target>
 </project>
 
