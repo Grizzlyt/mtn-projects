@@ -35,6 +35,7 @@
   </target>
 
   <target name="clean">
+    <property file="config/project.properties"/>
     <delete dir="${project.build}"/>
     <delete dir="${project.dist}"/>
   </target>
