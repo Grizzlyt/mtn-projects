@@ -2,7 +2,7 @@
 
 
       <path id="project.classpath">
-	   <pathelement location="${project.build}"/>
+	   <pathelement location="${project.build}/com/test"/>
            <pathelement path="${project.lib}/junit-4.11.jar"/>
            <pathelement path="${project.lib}/hamcrest-core-1.3.jar"/>
     </path>
