@@ -22,7 +22,7 @@
     </javac>
   </target>
 
-  <target name="dist" depends="compile" >
+  <target name="dist" depends="test" >
     <mkdir dir="${project.dist}/lib"/>
     <jar jarfile="${project.dist}/lib/testProject-${TODAY_MY}.jar" basedir="${project.build}"/>
        <copy file="./build.xml" tofile="${project.dist}/lib/build-${TODAY_MY}.xml" overwrite="true"/>
@@ -30,8 +30,13 @@
        <copy file="./config/project.properties" tofile="${project.dist}/lib/project.properties" overwrite="true"/>
   </target>
 
-  <target name="test">
-    <echo message="Test"/>
+  <target name="test" depends="compile">
+	<junit printsummary="yes">
+	  <classpath refid="test.classpath"/>
+  	  <test name="com.test.UnitTest" outfile="${project.build}/result">
+	    <formatter type="xml"/>
+	  </test>
+	</junit>
   </target>
 
   <target name="clean">
