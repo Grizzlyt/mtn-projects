@@ -6,6 +6,10 @@
   <property name="lib"   location="lib"/>
   <property name="test"   location="test"/>
 
+  <tstamp>
+      <format property="TODAY_MY" pattern="yyyymmdd-hhiiss"/>
+  </tstamp>
+
   <target name="init">
     <mkdir dir="${build}"/>
   </target>
@@ -25,7 +29,13 @@
 
   <target name="dist" depends="compile" >
     <mkdir dir="${dist}/lib"/>
-    <jar jarfile="${dist}/lib/testProject.jar" basedir="${build}"/>
+    <jar jarfile="${dist}/lib/testProject-${TODAY_MY}.jar" basedir="${build}"/>
+       <copy file="./build.xml" tofile="${dist}/lib/build-${TODAY_MY}.xml" overwrite="true"/>
+       <copy file="${lib}/commons-collections-3.2.1.jar" tofile="${dist}/lib/commons-collections-3.2.1-${TODAY_MY}.jar" overwrite="true"/>
+  </target>
+
+  <target name="test">
+    <echo "Test"/>
   </target>
 
   <target name="clean">
