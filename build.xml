@@ -5,7 +5,7 @@
   </tstamp>
 
   <target name="init">
-    <propertyfile file="conf/project.properties"/>
+    <propertyfile file="config/project.properties"/>
     <mkdir dir="${build}"/>
   </target>
 
