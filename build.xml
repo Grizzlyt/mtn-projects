@@ -46,7 +46,7 @@
 
   <target name="test" depends="compile">
 	<junit printsummary="yes">
-	      <classpath refid="projcet.classpath"/>
+	      <classpath refid="project.classpath"/>
           <test name="com.test.UnitTest" outfile="${project.build}/result">
 	  <formatter type="xml"/>
 	  </test>
